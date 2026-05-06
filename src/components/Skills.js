@@ -1,122 +1,149 @@
-import React, { useRef, useEffect, useState } from 'react'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHtml5, faCss3Alt, faJsSquare, faReact, faNodeJs } from '@fortawesome/free-brands-svg-icons';
-import { faDatabase, faComments, faUsers, faLightbulb, faClock } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faHtml5, faCss3Alt, faJsSquare, faReact, faNodeJs,
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  faDatabase, faComments, faUsers, faLightbulb, faClock, faServer,
+} from '@fortawesome/free-solid-svg-icons';
+
+const techSkills = [
+  { name: 'HTML5', icon: faHtml5, color: '#E34F26' },
+  { name: 'CSS3', icon: faCss3Alt, color: '#1572B6' },
+  { name: 'JavaScript', icon: faJsSquare, color: '#F7DF1E' },
+  { name: 'React.js', icon: faReact, color: '#61DAFB' },
+  { name: 'Node.js', icon: faNodeJs, color: '#8CC84B' },
+  { name: 'Express.js', icon: faServer, color: '#39FF14' },
+  { name: 'MongoDB', icon: faDatabase, color: '#47A248' },
+  { name: 'MySQL', icon: faDatabase, color: '#00758F' },
+];
+
+const softSkills = [
+  { name: 'Communication', icon: faComments },
+  { name: 'Teamwork', icon: faUsers },
+  { name: 'Problem-Solving', icon: faLightbulb },
+  { name: 'Adaptability', icon: faClock },
+  { name: 'Leadership', icon: faUsers },
+  { name: 'Work Ethic', icon: faLightbulb },
+  { name: 'Fast Learner', icon: faLightbulb },
+  { name: 'Time Management', icon: faClock },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: i * 0.07 },
+  }),
+};
 
 const Skills = () => {
-  const techRef = useRef(null);
-  const softRef = useRef(null);
-  const [isTechInView, setIsTechInView] = useState(false);
-  const [isSoftInView, setIsSoftInView] = useState(false);
-
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (entry.target === techRef.current) {
-            setIsTechInView(true);
-          } else if (entry.target === softRef.current) {
-            setIsSoftInView(true);
-          }
-        } else {
-          if (entry.target === techRef.current) {
-            setIsTechInView(false);
-          } else if (entry.target === softRef.current) {
-            setIsSoftInView(false);
-          }
-        }
-      });
-    }, options);
-
-    if (techRef.current) observer.observe(techRef.current);
-    if (softRef.current) observer.observe(softRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
-
-  const techSkills = [
-    { name: "HTML", icon: faHtml5, color: "#E34F26" },
-    { name: "CSS", icon: faCss3Alt, color: "#1572B6" },
-    { name: "JavaScript", icon: faJsSquare, color: "#F7DF1E" },
-    { name: "React.js", icon: faReact, color: "#61DAFB" },
-    { name: "Node.js", icon: faNodeJs, color: "#8CC84B" },
-    { name: "Express.js", icon: faNodeJs, color: "#000000" },
-    { name: "MongoDB", icon: faDatabase, color: "#47A248" },
-    { name: "MySQL", icon: faDatabase, color: "#00758F" },
-  ];
-
-  const softSkills = [
-    { name: "Communication", icon: faComments, color: "#4A90E2" },
-    { name: "Teamwork", icon: faUsers, color: "#E6B300" },
-    { name: "Problem-Solving", icon: faLightbulb, color: "#F7C74A" },
-    { name: "Adaptability", icon: faClock, color: "#F2A900" },
-    { name: "Leadership", icon: faUsers, color: "#FF6F61" },
-    { name: "Work Ethic", icon: faLightbulb, color: "#009B77" },
-    { name: "Fast Learner", icon: faLightbulb, color: "#FFB8B1" },
-    { name: "Time Management", icon: faClock, color: "#6B8E23" },
-  ];
-
   return (
-    <section id="skills" className="bg-white p-5 flex flex-col items-center justify-center w-full max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold mb-8 relative inline-block">
-        Skills
-        <span className="absolute left-0 bottom-0 top-10 w-full h-1 bg-orange-500" />
-      </h2>
-      
-      <div className="flex flex-col lg:flex-row w-full gap-14">
-        <motion.div 
-          ref={techRef}
-          className="w-full lg:w-2/3" 
-          initial={{ y: 100, opacity: 0 }} 
-          animate={{ y: isTechInView ? 0 : 100, opacity: isTechInView ? 1 : 0 }} 
-          transition={{ duration: 1.0 }}
+    <section
+      id="skills"
+      className="relative py-24 px-6"
+      style={{ background: 'var(--bg-secondary)' }}
+    >
+      <div className="max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="mb-14"
         >
-          <h3 className="text-2xl font-semibold mb-4 text-center lg:text-left">
-            Technical Skills
-            <span className="block w-full h-1 bg-orange-500 mt-1" />
-          </h3>
-          <div className="grid grid-cols-2 gap-6"> 
-            {techSkills.map(({ name, icon, color }) => (
-              <div key={name} className="skill text-white text-lg p-4 rounded shadow-md flex items-center justify-between" style={{ backgroundColor: color }}>
-                <FontAwesomeIcon icon={icon} className="text-3xl " /> 
-                {name}
-              </div>
+          <h2 className="section-heading">Skills</h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Technical Skills */}
+          <div>
+            <motion.h3
+              className="text-lg font-semibold mb-6"
+              style={{ fontFamily: 'JetBrains Mono, monospace', color: 'var(--green)' }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              {'>'} Technical Skills
+            </motion.h3>
+            <div className="grid grid-cols-2 gap-3">
+              {techSkills.map((skill, i) => (
+                <motion.div
+                  key={skill.name}
+                  custom={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  className="skill-badge group"
+                >
+                  <FontAwesomeIcon
+                    icon={skill.icon}
+                    style={{ color: skill.color, fontSize: '1.4rem', flexShrink: 0 }}
+                  />
+                  <span className="text-sm font-medium">{skill.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Soft Skills */}
+          <div>
+            <motion.h3
+              className="text-lg font-semibold mb-6"
+              style={{ fontFamily: 'JetBrains Mono, monospace', color: 'var(--green)' }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              {'>'} Soft Skills
+            </motion.h3>
+            <div className="grid grid-cols-2 gap-3">
+              {softSkills.map((skill, i) => (
+                <motion.div
+                  key={skill.name}
+                  custom={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  className="skill-badge"
+                >
+                  <FontAwesomeIcon
+                    icon={skill.icon}
+                    style={{ color: 'var(--green)', fontSize: '1.2rem', flexShrink: 0 }}
+                  />
+                  <span className="text-sm font-medium">{skill.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Also knows */}
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <p
+            className="text-sm mb-4"
+            style={{ fontFamily: 'JetBrains Mono, monospace', color: 'rgba(255,255,255,0.4)' }}
+          >
+            {"// also familiar with"}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {['REST APIs', 'JWT Auth', 'WhatsApp Cloud API', 'Razorpay', 'Nodemailer', 'Git & GitHub', 'Postman', 'cPanel Hosting', 'GSAP', 'Framer Motion'].map((tag) => (
+              <span key={tag} className="tech-tag">{tag}</span>
             ))}
           </div>
-        </motion.div>
-        <motion.div 
-          ref={softRef}
-          className="w-full lg:w-2/3"
-          initial={{ y: 100, opacity: 0 }} 
-          animate={{ y: isSoftInView ? 0 : 100, opacity: isSoftInView ? 1 : 0 }} 
-          transition={{ duration: 1.0 }}
-        >
-          <h3 className="text-2xl font-semibold mb-4 text-center lg:text-left">
-            Soft Skills
-            <span className="block w-full h-1 bg-orange-500 mt-1" />
-          </h3>
-          <div className="grid grid-cols-2 gap-6">  
-  {softSkills.map(({ name, icon, color }) => (
-    <div
-      key={name}
-      className="skill text-white text-lg p-4 rounded shadow-md flex items-center justify-between flex-col items-center gap-2 md:flex-row md:items-start"
-      style={{ backgroundColor: color }}
-    >
-      <FontAwesomeIcon icon={icon} className="text-3xl mb-2 md:mb-0" /> 
-      <span className="break-words">{name}</span>
-    </div>
-  ))}
-</div>
-
         </motion.div>
       </div>
     </section>
@@ -124,21 +151,3 @@ const Skills = () => {
 };
 
 export default Skills;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
