@@ -5,7 +5,7 @@ const experiences = [
   {
     company: 'Double Tap Innovations and Technologies',
     role: 'MERN Stack Developer',
-    period: 'Professional Experience',
+    period: 'Nov 2025 – Present',
     projects: [
       {
         name: 'Fulupo – E-commerce Platform',
@@ -69,14 +69,27 @@ const Experience = () => {
           >
             {/* Company Header */}
             <div className="glass-card p-6 mb-8">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div>
-                  <h3
-                    className="text-xl font-bold text-white mb-1"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
-                  >
-                    {exp.company}
-                  </h3>
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <h3
+                      className="text-xl font-bold text-white"
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {exp.company}
+                    </h3>
+                    <span
+                      className="text-xs px-2.5 py-0.5 rounded-full font-mono flex items-center gap-1.5"
+                      style={{
+                        background: 'rgba(57, 255, 20, 0.1)',
+                        border: '1px solid rgba(57, 255, 20, 0.35)',
+                        color: 'var(--green)',
+                      }}
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--green)] animate-pulse" />
+                      Nov 2025 – Present
+                    </span>
+                  </div>
                   <span className="neon-text text-sm font-semibold" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
                     {exp.role}
                   </span>

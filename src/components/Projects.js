@@ -5,6 +5,9 @@ import project1 from './assets/images/rps.webp';
 import project2 from './assets/images/portfolio.webp';
 import project3 from './assets/images/v-crackers-logo.png';
 import project4 from './assets/images/leo-crackers-logo.jpg';
+import dolphinoLogo from './assets/images/dolphino-logo.png';
+import muthusPetalsLogo from './assets/images/muthuspetals-logo.jpeg';
+import paapiLogo from './assets/images/paapi-logo.png';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const companyProjects = [
@@ -34,9 +37,45 @@ const companyProjects = [
 
 const personalProjects = [
   {
+    name: "Muthu's Petals",
+    subtitle: 'Floral & Event Decor E-commerce',
+    category: 'Client Project',
+    tech: ['MERN Stack', 'Node.js', 'MongoDB', 'REST APIs', 'Razorpay'],
+    description:
+      'Custom e-commerce platform for ordering fresh flower bouquets, garlands, and event decorations. Features catalog management, smooth cart workflows, and secure online ordering.',
+    highlights: ['Product Catalog', 'Order Management', 'E-commerce Checkout'],
+    image: muthusPetalsLogo,
+    sourceCode: 'https://github.com/Kishore298/muthus-petals',
+    liveDemo: 'https://muthuspetals.com',
+  },
+  {
+    name: 'Paapi Crackers',
+    subtitle: 'Fireworks E-commerce Website',
+    category: 'Client Project',
+    tech: ['MERN Stack', 'Razorpay', 'WhatsApp Cloud API', 'Node.js'],
+    description:
+      'Full-scale festival fireworks e-commerce platform with live price calculation, festival discounts, instant WhatsApp order alerts, and integrated Razorpay payment gateway.',
+    highlights: ['Instant Checkout', 'WhatsApp Alerts', 'Razorpay Gateway'],
+    image: paapiLogo,
+    sourceCode: 'https://github.com/Kishore298/paapi-crackers',
+    liveDemo: 'https://paapicrackers.com',
+  },
+  {
+    name: 'Dolphino Swimming Pool',
+    subtitle: 'Academy & Booking Platform',
+    category: 'Client Project',
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Tailwind CSS'],
+    description:
+      'Interactive web platform for a professional swimming academy and pool facility. Features service details, slot & membership inquiries, gallery showcase, and responsive UI.',
+    highlights: ['Booking Inquiries', 'Modern UI/UX', 'RESTful Backend'],
+    image: dolphinoLogo,
+    sourceCode: 'https://github.com/Kishore298/dolphino-pool',
+    liveDemo: null,
+  },
+  {
     name: 'V Crackers',
     subtitle: 'E-commerce Website',
-    category: 'Personal Project',
+    category: 'Client Project',
     tech: ['MERN Stack', 'Razorpay', 'WhatsApp Cloud API'],
     description:
       'Integrated Razorpay payment gateway for secure checkout workflows. Implemented WhatsApp authentication and automated order notifications. Deployed on MilesWeb cPanel shared hosting.',
@@ -48,7 +87,7 @@ const personalProjects = [
   {
     name: 'Leo Crackers',
     subtitle: 'E-commerce Website',
-    category: 'Personal Project',
+    category: 'Client Project',
     tech: ['MERN Stack', 'WhatsApp Cloud API', 'Nodemailer'],
     description:
       'WhatsApp-based authentication and automated order communication systems. Email notification workflows using Nodemailer. Full product catalog and admin dashboard modules.',
@@ -56,6 +95,18 @@ const personalProjects = [
     image: project4,
     sourceCode: 'https://github.com/Kishore298/leo-crackers-mern',
     liveDemo: 'https://leocrackers.in',
+  },
+  {
+    name: 'Personal Portfolio',
+    subtitle: 'Developer Portfolio',
+    category: 'Personal Project',
+    tech: ['React.js', 'Tailwind CSS', 'Framer Motion'],
+    description:
+      'This very portfolio — built with React, Tailwind CSS, and premium animations including particle network, glassmorphism cards, and interactive typing effects.',
+    highlights: ['Particle Network', 'Framer Motion', 'Black + Green Theme'],
+    image: project2,
+    sourceCode: 'https://github.com/Kishore298',
+    liveDemo: '#home',
   },
   {
     name: 'Rock Paper Scissors',
@@ -68,18 +119,6 @@ const personalProjects = [
     image: project1,
     sourceCode: 'https://github.com/Kishore298/rock-paper-scissors-game',
     liveDemo: 'https://kishore298.github.io/rock-paper-scissors-game/',
-  },
-  {
-    name: 'Personal Portfolio',
-    subtitle: 'Developer Portfolio',
-    category: 'Personal Project',
-    tech: ['React.js', 'Tailwind CSS', 'Framer Motion'],
-    description:
-      'This very portfolio — built with React, Tailwind CSS, and premium animations including particle network, glassmorphism cards, and typing effects.',
-    highlights: ['Particle Network', 'Framer Motion', 'Black + Green Theme'],
-    image: project2,
-    sourceCode: 'https://github.com/Kishore298',
-    liveDemo: '#home',
   },
 ];
 
@@ -195,19 +234,20 @@ const PersonalCard = ({ project, index }) => (
       glarePosition="all"
       scale={1.02}
       transitionSpeed={1200}
+      className="h-full"
     >
-      <div className="glass-card overflow-hidden h-full flex flex-col">
+      <div className="glass-card overflow-hidden h-full flex flex-col group">
         {/* Image */}
         {project.image && (
-          <div className="relative overflow-hidden h-44 flex-shrink-0">
+          <div className="relative overflow-hidden h-44 flex-shrink-0 bg-[#090d13] flex items-center justify-center p-3 border-b border-[rgba(57,255,20,0.1)]">
             <img
               src={project.image}
               alt={project.name}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
             />
             <div
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(to bottom, transparent 40%, rgba(13,17,23,0.95))' }}
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'linear-gradient(to bottom, transparent 40%, rgba(13,17,23,0.9))' }}
             />
             <span className="absolute bottom-3 left-4 category-badge text-xs">
               {project.category}
@@ -215,62 +255,85 @@ const PersonalCard = ({ project, index }) => (
           </div>
         )}
 
-        <div className="p-5 flex flex-col flex-1">
-          {/* Name */}
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <h3
-                className="text-lg font-bold text-white"
-                style={{ fontFamily: 'Inter, sans-serif' }}
-              >
-                {project.name}
-              </h3>
-              <p
-                className="text-xs mt-0.5"
-                style={{ color: 'var(--green)', fontFamily: 'JetBrains Mono, monospace' }}
-              >
-                {project.subtitle}
-              </p>
+        <div className="p-5 flex flex-col flex-1 justify-between">
+          <div>
+            {/* Name */}
+            <div className="flex items-start justify-between gap-2 mb-3">
+              <div>
+                <h3
+                  className="text-lg font-bold text-white group-hover:text-[var(--green)] transition-colors duration-200"
+                  style={{ fontFamily: 'Inter, sans-serif' }}
+                >
+                  {project.name}
+                </h3>
+                <p
+                  className="text-xs mt-0.5"
+                  style={{ color: 'var(--green)', fontFamily: 'JetBrains Mono, monospace' }}
+                >
+                  {project.subtitle}
+                </p>
+              </div>
+
+              {/* Links */}
+              <div className="flex items-center gap-2 flex-shrink-0">
+                {project.sourceCode && (
+                  <a
+                    href={project.sourceCode}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-md hover:bg-[rgba(57,255,20,0.1)]"
+                    style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', transition: 'all 0.2s' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#39FF14'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
+                    title="Source Code"
+                  >
+                    <FaGithub />
+                  </a>
+                )}
+                {project.liveDemo && (
+                  <a
+                    href={project.liveDemo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-1.5 rounded-md hover:bg-[rgba(57,255,20,0.1)]"
+                    style={{ color: 'rgba(255,255,255,0.6)', fontSize: '1rem', transition: 'all 0.2s' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#39FF14'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
+                    title="Live Demo"
+                  >
+                    <FaExternalLinkAlt />
+                  </a>
+                )}
+              </div>
             </div>
 
-            {/* Links */}
-            <div className="flex gap-3">
-              {project.sourceCode && (
-                <a
-                  href={project.sourceCode}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1.1rem', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#39FF14'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
-                  title="Source Code"
-                >
-                  <FaGithub />
-                </a>
-              )}
-              {project.liveDemo && project.liveDemo !== '#This is my personal portfolio' && (
-                <a
-                  href={project.liveDemo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1rem', transition: 'color 0.2s' }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#39FF14'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
-                  title="Live Demo"
-                >
-                  <FaExternalLinkAlt />
-                </a>
-              )}
-            </div>
+            {/* Description */}
+            <p
+              className="text-sm leading-relaxed mb-4"
+              style={{ color: 'rgba(255,255,255,0.65)', fontFamily: 'Inter, sans-serif' }}
+            >
+              {project.description}
+            </p>
+
+            {/* Highlights */}
+            {project.highlights && (
+              <div className="flex flex-wrap gap-1.5 mb-4">
+                {project.highlights.map((h) => (
+                  <span
+                    key={h}
+                    className="text-[11px] px-2 py-0.5 rounded font-mono"
+                    style={{
+                      background: 'rgba(57,255,20,0.06)',
+                      color: 'rgba(255,255,255,0.8)',
+                      border: '1px solid rgba(57,255,20,0.15)',
+                    }}
+                  >
+                    {h}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-
-          {/* Description */}
-          <p
-            className="text-sm leading-relaxed mb-4 flex-1"
-            style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Inter, sans-serif' }}
-          >
-            {project.description}
-          </p>
 
           {/* Tech tags */}
           <div className="flex flex-wrap gap-2 pt-3" style={{ borderTop: '1px solid rgba(57,255,20,0.1)' }}>
@@ -291,7 +354,7 @@ const Projects = () => {
       className="relative py-24 px-6"
       style={{ background: 'var(--bg-secondary)' }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -334,7 +397,7 @@ const Projects = () => {
           style={{ background: 'linear-gradient(90deg, transparent, rgba(57,255,20,0.25), transparent)' }}
         />
 
-        {/* Personal Projects */}
+        {/* Client & Personal Projects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -349,9 +412,9 @@ const Projects = () => {
               className="inline-block w-2 h-2 rounded-full"
               style={{ background: 'var(--green)', boxShadow: '0 0 8px var(--green)' }}
             />
-            Personal Projects
+            Client &amp; Personal Projects
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {personalProjects.map((project, i) => (
               <PersonalCard key={project.name} project={project} index={i} />
             ))}
@@ -363,3 +426,4 @@ const Projects = () => {
 };
 
 export default Projects;
+
